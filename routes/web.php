@@ -16,12 +16,13 @@ use App\Http\Controllers\CompanyController;
 
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
 
-
     Route::resource('company', 'App\Http\Controllers\CompanyController', ['only' => [ 'index','store','edit','update','destroy' ]]);
+    Route::resource('employee', 'App\Http\Controllers\EmployeeController', ['only' => [ 'index','store','edit','update','destroy' ]]);
 });
 
 require __DIR__.'/auth.php';

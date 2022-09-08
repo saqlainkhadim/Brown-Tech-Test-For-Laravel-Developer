@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <img src="{{asset('images/brown-tech.png')}}" style="width: 40px;height: 40px">
                     </a>
                 </div>
 
@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('company.index')" :active="request()->routeIs('company.index')">
                         {{ __('Companies') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('employees')">
+                    <x-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.index')">
                         {{ __('Employees') }}
                     </x-nav-link>
                 </div>
@@ -71,6 +71,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('company.index')" :active="request()->routeIs('company.index')">
+                {{ __('Companies') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.index')">
+                {{ __('Employees') }}
             </x-responsive-nav-link>
         </div>
 
