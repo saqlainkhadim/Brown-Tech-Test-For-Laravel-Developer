@@ -25,4 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('employee', 'App\Http\Controllers\EmployeeController', ['only' => [ 'index','store','edit','update','destroy' ]]);
 });
 
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+Route::get('mail', [ 'uses' => 'App\Http\Controllers\LanguageController@mail']);
+
 require __DIR__.'/auth.php';

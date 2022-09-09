@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SendMail;
 use App\Models\Company;
 use Validator,Redirect;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class CompanyController extends Controller
     {
         $validator = Validator::make($request->all(), array(
             'name' => 'required',
-            'email' => 'unique:companies,email',
+//            'email' => 'unique:companies,email',
             'logo'=>'mimes:jpeg,jpg,png,gif|dimensions:min_width=100,min_height=100'
         ), array(
             'email.unique'         => 'Email already exists!',
@@ -57,7 +58,11 @@ class CompanyController extends Controller
         if(isset($request->logo) && $request->logo) {
             $input['logo']= image_upload($request->logo);
         }
-        Company::insert($input);
+        $comapny=Company::create($input);
+        
+        if(isset($comapny->email) && $comapny->email)
+        event(new SendMail($comapny->email));
+
         return Redirect::back();
     }
 
@@ -83,14 +88,7 @@ class CompanyController extends Controller
         return view('company.edit',compact('company'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Company  $company
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Company $company)
+       public function update(Request $request, Company $company)
     {
         $validator = Validator::make($request->all(), array(
             'name' => 'required',

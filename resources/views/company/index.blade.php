@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Companies') }}
+            {{ __('main.Companies') }}
 
             <button class="btn btn-primary btn-sm ml-3" data-toggle="modal" data-target=".bd-example-modal-lg"><i
                     class="fa-solid fa-plus"></i></button>
